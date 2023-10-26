@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "upstage-lab-project"
+version = "0.1.0"
+description = "for submit"
+authors = ["이현진 <jinintg@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
