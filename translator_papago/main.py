@@ -23,11 +23,11 @@ parsing_dict = {'한국어' : 2,
                 '인도네시아어' : 15,
                 '힌디어' : 16,
                 '아랍어' : 17}
-
-src = '한국어'
-dest = '영어'
 with open("translation.txt", 'r', encoding = 'utf-8') as f:
     inp = f.readlines()
+
+src = inp[0].split('->')[0]
+dest = inp[0].split('->')[1].rstrip()
 output_li = []
 browser = webdriver.Chrome()
 browser.get("https://papago.naver.com/")
@@ -37,6 +37,8 @@ browser.find_element(By.XPATH, f'/html/body/div/div/div[1]/section/div/div[1]/di
 browser.find_element(By.XPATH, f'/html/body/div/div/div[1]/section/div/div[1]/div[3]/div/div[1]/div/div/div[1]/button[2]/span').click()
 browser.find_element(By.XPATH, f'/html/body/div/div/div[1]/section/div/div[1]/div[3]/div/div[1]/div/div/div[2]/ul/li[{parsing_dict[dest] - 1}]').click()
 for idx, value in enumerate(inp):
+    if idx == 0:
+        continue
     browser.find_element(By.XPATH, f'/html/body/div/div/div[1]/section/div/div[1]/div[2]/div/div[3]/label/textarea').click()
     browser.find_element(By.XPATH, f'/html/body/div/div/div[1]/section/div/div[1]/div[2]/div/div[3]/label/textarea').send_keys(value.strip())
     time.sleep(3)
